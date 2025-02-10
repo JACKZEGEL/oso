@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas y Dedicatorias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: sans-serif; /* Mejora la legibilidad */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Añade un poco de sombra */
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 24px;
+            z-index: 100; /* Asegúrate de que esté encima de otros elementos */
+        }
+        #inicio {
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 50px 0;
+            background: url('luna.png') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .modal-body label{
+            display:block;
+            margin-bottom:5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">📜 Scritos_Pezman</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tipos">Tipos de Notas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pedido">Pedido Personalizado</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pago">Métodos de Pago</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historial">Historial de Pedidos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="inicio" class="container text-center">
+        <h1 class="mt-4">📜 Notas y Dedicatorias Personalizadas ✍️</h1>
+        <p>Solicita cartas, discursos, mensajes y mucho más. ¡Personalizado para ti! 🎉</p>
+    </div>
+
+    <div id="tipos" class="container">
+        <h2 class="mt-4 text-center">📌 Elige tu tipo de nota:</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card p-3" data-bs-toggle="modal" data-bs-target="#pedidoModal" data-tipo="notas">
+                    <h4>📝 Notas</h4>
+                    <p>Breves mensajes con un significado especial. ($5)</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3" data-bs-toggle="modal" data-bs-target="#pedidoModal" data-tipo="poemas">
+                    <h4>📜 Poemas</h4>
+                    <p>Versos llenos de sentimiento y creatividad. ($10)</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3" data-bs-toggle="modal" data-bs-target="#pedidoModal" data-tipo="cartas">
+                    <h4>✉️ Cartas</h4>
+                    <p>Escritos detallados con profundidad emocional. ($15)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pago" class="container text-center mt-4">
+        <h3>💰 Métodos de Pago:</h3>
+        <p>📌 Yape: <strong>983335355</strong></p>
+        <p>📌 PayPal: <a href="https://www.paypal.me/ScritosPezman2024" target="_blank">Enviar Pago</a></p>
+    </div>
+
+    <a href="https://api.whatsapp.com/send?phone=+51974844802" class="whatsapp-btn" target="_blank">💬</a>
+
+    <div class="container text-center mt-4">
+        <a href="#inicio" class="btn btn-dark">⬆ Volver al inicio</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pedidoModalLabel">Detalles de tu pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="pedidoForm">
+                        <label for="tipoNota">Selecciona tu tipo de nota:</label>
+                        <select class="form-select" id="tipoNota">
+                            <option value="" disabled selected>Seleccione el tipo de nota</option>
+                            <option value="Nota de cumpleaños">Nota de cumpleaños</option>
+                            <option value="Nota de felicitación">Nota de felicitación</option>
+                            <option value="Nota de agradecimiento">Nota de agradecimiento</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <label for="nombreDestinatario" class="mt-3">Nombre del destinatario:</label>
+                        <input type="text" class="form-control" id="nombreDestinatario" placeholder="Escribe el nombre del destinatario" required>
+                        <label for="detalles" class="mt-3">Escribe los detalles adicionales:</label>
+                        <textarea class="form-control" id="detalles" rows="3" placeholder="Describe los detalles de tu nota" required></textarea>
+                        <button type="button" class="btn btn-success mt-3" onclick="enviarPedido()">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const pedidoModal = new bootstrap.Modal(document.getElementById('pedidoModal'));
+
+        document.querySelectorAll('.card[data-bs-toggle="modal"]').forEach(card => {
+            card.addEventListener('click', () => {
+                const tipo = card.dataset.tipo;
+                document.getElementById('tipoNota').value = tipo; //Pre-selecciona el tipo
+            });
+        });
+
+        function enviarPedido() {
+            let tipoNota = document.getElementById("tipoNota").value;
+            let nombreDestinatario = document.getElementById("nombreDestinatario").value;
+            let detalles = document.getElementById("detalles").value;
+
+            if (!tipoNota || !nombreDestinatario || !detalles) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+            if (detalles.length < 10) {
+                alert("Por favor, proporciona más detalles (mínimo 10 caracteres).");
+                return;
+            }
+
+            let mensaje = `¡Hola! Quiero solicitar una nota personalizada:\n\nTipo de nota: ${tipoNota}\nNombre del destinatario: ${nombreDestinatario}\nDetalles: ${detalles}`;
+
+            let numeroWhatsApp = "51974844802";
+            let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
+
+            window.open(url, "_blank");
+            pedidoModal.hide(); //Cierra el modal después de enviar
+        }
+    </script>
+</body>
+</html>
